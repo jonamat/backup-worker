@@ -39,7 +39,7 @@ fi
 TODAY=$(date --iso)
 RMDATE=$(date --iso -d "$STORE_DAYS days ago")
 TMPDIR=$(mktemp -d)
-FILENAME=$(date +%Y%m%d_%H%M%S).sql.gz
+FILENAME=$(date +%Y%m%d_%H%M%S).gz
 
 # Dump db
 echo -n "Dumping database... "
