@@ -37,22 +37,22 @@ if [ -z "$STORE_DAYS" ]; then
 fi
 
 TODAY=$(date --iso)
-RMDATE=$(date --iso -d '{$STORE_DAYS} days ago')
+RMDATE=$(date --iso -d "$STORE_DAYS days ago")
 TMPDIR=$(mktemp -d)
 FILENAME=$(date +%Y%m%d_%H%M%S).sql.gz
 
 # Dump db
 echo -n "Dumping database... "
-pg_dump postgres://$PG_HOST:$PG_USER@$PG_USER/$PG_DB | gzip > $TMPDIR/$FILENAME.sql.gz
+pg_dump postgres://$PG_USER:$PG_PASSWD@$PG_HOST/$PG_DB | gzip > $TMPDIR/$FILENAME
 echo "Done."
 
 # Upload to FTP
 echo -n "Uploading files via FTP... "
- << EOF
-open ${FTPUSER}:${FTP_PASSWD}@${FTP_HOST}
+lftp << EOF
+open ${FTP_USER}:${FTP_PASSWD}@${FTP_HOST}
 mkdir ${TODAY}
 cd ${TODAY}
-put -E ${TMPDIR}/*
+put -E ${TMPDIR}/${FILENAME}
 cd ..
 rm -rf ${RMDATE}
 bye
