@@ -3,7 +3,7 @@ WORKDIR /root
 
 COPY backup.sh init.sh ./
 
-RUN apk update && apk add postgresql-client #lftp
+RUN apk update && apk add postgresql-client lftp coreutils
 
 RUN chmod +x backup.sh init.sh && ./init.sh
 
