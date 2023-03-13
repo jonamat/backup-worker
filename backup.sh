@@ -32,6 +32,7 @@ if [ -z "$FTP_PASSWD" ]; then
 fi
 
 if [ -z "$STORE_DAYS" ]; then
+    echo "STORE_DAYS not set, using default of 7 days"
     STORE_DAYS=7
     exit 1
 fi
