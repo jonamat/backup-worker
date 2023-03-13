@@ -5,4 +5,6 @@ COPY backup.sh init.sh ./
 
 RUN apk update && apk add postgresql-client #lftp
 
-CMD ["sh", "init.sh"]
+RUN chmod +x backup.sh init.sh && ./init.sh
+
+CMD ["tail", "-f", "/dev/null"]
