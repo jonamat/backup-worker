@@ -7,4 +7,4 @@ if [ -z "$CRON_SCHEDULE" ]; then
     CRON_SCHEDULE="0 4 * * *"
 fi
 
-crontab -l | { cat; echo "${CRON_SCHEDULE} /bin/sh /root/backup.sh"; } | crontab -
+crontab -l | { cat; echo "${CRON_SCHEDULE} /root/backup.sh >> /root/backup.log"; } | crontab -

@@ -7,4 +7,6 @@ RUN apk update && apk add postgresql-client lftp coreutils
 
 RUN chmod +x backup.sh init.sh && ./init.sh
 
-CMD ["tail", "-f", "/dev/null"]
+RUN touch backup.log
+
+CMD ["tail", "-f", "/root/backup.log"]
