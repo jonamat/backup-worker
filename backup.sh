@@ -2,6 +2,8 @@
 
 set -e
 
+echo "Starting backup at $(date)"
+
 if [ -z "$PG_HOST" ]; then
     echo "PG_HOST environment variable is not set"
     exit 1
